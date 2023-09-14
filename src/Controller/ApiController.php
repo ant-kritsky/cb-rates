@@ -25,8 +25,8 @@ class ApiController
     {
         $params = $request->getQueryParams();
         $date = $params['date'] ?? date('Y-m-d');
-        $currency = $params['currency'] ? strtoupper($params['currency']) : null;
-        $base = $params['base'] ? strtoupper($params['base']) : CurrencyRate::BASE_CURRENCY;
+        $currency = isset($params['currency']) ? strtoupper($params['currency']) : null;
+        $base = isset($params['base']) ? strtoupper($params['base']) : CurrencyRate::BASE_CURRENCY;
 
         if (is_null($date) || is_null($currency)) {
             $response = $response->withStatus(400);
